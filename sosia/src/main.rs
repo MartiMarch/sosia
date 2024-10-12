@@ -7,6 +7,9 @@ use actix_web::{
     App,
     HttpServer
 };
+use adapters::{
+    postgres_ad
+};
 use configuration::{
     api_conf
 };
@@ -17,6 +20,7 @@ use paperclip::actix::{
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    postgres_ad::initialize_database().await;
     HttpServer::new(||
         App::new()
             .wrap_api()
