@@ -6,7 +6,7 @@ use serde::{
 
 
 #[derive(Debug, Serialize, Deserialize, Apiv2Schema)]
-struct Database {
+pub struct Database {
     name: String,
     host: String,
     port: u16,

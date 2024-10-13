@@ -6,24 +6,24 @@ use crate::configuration::{
 };
 
 
-static LOGGER: Lazy<Logger> = Lazy::new(|| {
+pub static LOGGER: Lazy<Logger> = Lazy::new(|| {
     Logger::new()
 });
 
 
-struct Logger {
-    log_format: log_format
+pub struct Logger {
+    log_format: log_format::LogFormat
 }
 
 impl Logger {
 
-    pub fn new() -> Self {
+    fn new() -> Self {
         Logger {
             log_format: logger_conf::format()
         }
     }
 
-    pub fn log<T: Debug>(&self, message: &T) {
+    pub fn log<T: Debug + serde::Serialize>(&self, message: &T) {
         match self.log_format {
             log_format::LogFormat::TEXT => {
                 println!("{:?}", message);
@@ -34,5 +34,9 @@ impl Logger {
                 println!("{message_as_json}");
             }
         }
+    }
+
+    pub fn format(&self) -> &log_format::LogFormat {
+        &self.log_format
     }
 }

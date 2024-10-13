@@ -5,5 +5,5 @@ pub mod secret_dom;
 pub mod access_dom;
 pub mod secret_status_dom;
 pub mod date_dom;
-mod logger_message_dom;
-mod po;
+pub mod logger_message_dom;
+pub mod po;

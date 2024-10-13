@@ -9,7 +9,9 @@ use crate::services::{
 };
 use tokio_postgres::NoTls;
 use once_cell::sync::Lazy;
-use crate::adapters::postgres_ad;
+use crate::adapters::{
+    postgres_ad,
+};
 
 
 static POSTGRES_POOL: Lazy<Pool> = Lazy::new(|| {

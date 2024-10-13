@@ -28,6 +28,7 @@ async fn main() -> std::io::Result<()> {
             .with_json_spec_at("/api/v1/swagger")
             .build()
     )
+        .workers(1)
         .bind((api_conf::network_interface(), api_conf::port()))?
         .run()
         .await

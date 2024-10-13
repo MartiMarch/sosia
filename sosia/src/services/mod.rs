@@ -1,2 +1,2 @@
 pub mod configuration_srv;
-mod logger_svc;
+pub mod logger_svc;

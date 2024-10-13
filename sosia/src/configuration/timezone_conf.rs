@@ -9,6 +9,7 @@ pub fn get() -> String {
     match timezone.parse::<Tz>() {
         Ok(tz) => tz.to_string(),
         Err(error) => {
+
             eprintln!("Something goes wrong configuring timezone. Error: {error}");
             "UTC".to_string()
         }
