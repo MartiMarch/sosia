@@ -1,0 +1,3 @@
+struct Namespace {
+    name: String
+}

@@ -1,0 +1,13 @@
+postgresql:
+  enabled: true
+  global:
+    postgresql:
+      postgresqlPassword: 1234
+      postgresqlUsername: postgres
+      postgresqlDatabase: sosia
+  service:
+    type: ClusterIP
+  persistence:
+    enabled: true
+    storageClass: "standard"
+    size: 8Gi

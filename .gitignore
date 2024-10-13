@@ -1,0 +1,7 @@
+/target
+ .env
+.zip
+.tgz
+sosia/target
+chart/charts
+.idea
