@@ -1,3 +1,5 @@
+CICD
+
 1. Gestionar el acceso mediante roles custom
 2. Almacenar contraseñas
 3. Crear "namespaces" para las contraseña
