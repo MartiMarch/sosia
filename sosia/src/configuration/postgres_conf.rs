@@ -1,11 +1,7 @@
-use crate::domain::{
-    logger_message_dom::LoggerMessage as Message,
-    date_dom::Date as Date,
-    po::logger_message_type_po::LogType as LogType
-};
-use crate::services::{
-    logger_svc as Logger
-};
+use crate::domain::po::logger_message_type_po::LogType as LogType;
+use crate::domain::logger_message_dom::LoggerMessage as Message;
+use crate::domain::date_dom::Date as Date;
+use crate::services::logger_svc as Logger;
 use std::env;
 
 

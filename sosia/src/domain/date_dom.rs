@@ -1,21 +1,15 @@
+use crate::configuration::timezone_conf as TimezoneConf;
 use paperclip::actix::Apiv2Schema;
+use chrono::NaiveDateTime;
+use chrono::ParseResult;
+use serde::Deserialize;
+use serde::Serialize;
+use chrono::Datelike;
+use chrono::TimeZone;
+use chrono::Timelike;
 use chrono_tz::Tz;
-use serde::{
-    Deserialize,
-    Serialize
-};
-use crate::configuration::{
-    timezone_conf as TimezoneConf
-};
+use chrono::Utc;
 use std::fmt;
-use chrono::{
-    Datelike,
-    NaiveDateTime,
-    ParseResult,
-    TimeZone,
-    Timelike,
-    Utc
-};
 
 
 #[derive(Debug, Serialize, Deserialize, Apiv2Schema)]

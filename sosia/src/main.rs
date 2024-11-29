@@ -3,19 +3,11 @@ mod services;
 mod domain;
 mod configuration;
 
-use actix_web::{
-    App,
-    HttpServer
-};
-use adapters::{
-    postgres_ad
-};
-use configuration::{
-    api_conf
-};
-use paperclip::actix::{
-    OpenApiExt
-};
+use actix_web::App;
+use actix_web::HttpServer;
+use adapters::postgres_ad;
+use configuration::api_conf;
+use paperclip::actix::OpenApiExt;
 
 
 #[actix_web::main]

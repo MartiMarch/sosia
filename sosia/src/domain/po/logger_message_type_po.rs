@@ -1,13 +1,11 @@
-use serde::{
-    Deserialize,
-    Serialize
-};
-use std::fmt;
-use colored::Colorize;
 use paperclip::actix::Apiv2Schema;
+use serde::Deserialize;
+use colored::Colorize;
+use serde::Serialize;
+use std::fmt;
 
 
-#[derive(Debug, Serialize, Deserialize, Apiv2Schema)]
+#[derive(Clone, Debug, Serialize, Deserialize, Apiv2Schema)]
 pub enum LogType {
     INFO,
     ERROR,

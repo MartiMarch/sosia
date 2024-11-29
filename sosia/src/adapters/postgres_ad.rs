@@ -1,17 +1,15 @@
-use deadpool_postgres::{
-    tokio_postgres,
-    Runtime,
-    Config,
-    Pool
-};
-use crate::services::{
-    configuration_srv as conf_srv
-};
+use crate::domain::po::logger_message_type_po::LogType as LogType;
+use crate::domain::logger_message_dom::LoggerMessage;
+use crate::services::configuration_srv as conf_srv;
+use crate::services::logger_svc as logger_svc;
+use crate::domain::date_dom::Date as Date;
+
+use deadpool_postgres::tokio_postgres;
+use deadpool_postgres::Runtime;
+use deadpool_postgres::Config;
+use deadpool_postgres::Pool;
 use tokio_postgres::NoTls;
 use once_cell::sync::Lazy;
-use crate::adapters::{
-    postgres_ad,
-};
 
 
 static POSTGRES_POOL: Lazy<Pool> = Lazy::new(|| {
@@ -33,14 +31,27 @@ pub fn get_pool() -> &'static Pool {
 }
 
 pub async fn initialize_database() {
-    let pool= postgres_ad::get_pool();
-    let client = pool.get().await.unwrap();
+    let message_error: String = logger_svc::log_to_str(
+        &logger_svc::str_to_log(&"Failed to initialize database client".to_string(), &LogType::ERROR)
+    );
+    let client = POSTGRES_POOL.get().await.expect(&message_error);
 
-    let exists_database = client.query(
-        "SELECT 1 FROM pg_database WHERE datname = 'sosia';",
-        &[]
-    ).await.unwrap();
-    if exists_database.is_empty() {
-        client.execute("CREATE DATABASE sosia;", &[]).await.unwrap();
+    match client.execute("
+        CREATE TABLE IF NOT EXISTS namespaces (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(255) NOT NULL
+        );", &[]).await {
+        Ok(_) => {
+            logger_svc::log(&LoggerMessage::new_simplified(
+                LogType::INFO,
+                "Database 'namespace' created".to_string()
+            ))
+        },
+        Err(err) => {
+            logger_svc::log(&LoggerMessage::new_simplified(
+                LogType::ERROR,
+                "Something goes wrong creating 'namespace' database".to_string()
+            ))
+        }
     }
 }

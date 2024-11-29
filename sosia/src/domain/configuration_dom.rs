@@ -1,11 +1,7 @@
+use crate::configuration::po::log_format_po as log_format;
 use paperclip::actix::Apiv2Schema;
-use serde::{
-    Deserialize,
-    Serialize
-};
-use crate::configuration::{
-    po::log_format_po as log_format,
-};
+use serde::Deserialize;
+use serde::Serialize;
 
 
 #[derive(Debug, Serialize, Deserialize, Apiv2Schema)]

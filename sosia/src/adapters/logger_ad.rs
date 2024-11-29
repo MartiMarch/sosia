@@ -1,9 +1,7 @@
+use crate::configuration::po::log_format_po as log_format;
+use crate::configuration::logger_conf;
 use once_cell::sync::Lazy;
 use std::fmt::Debug;
-use crate::configuration::{
-    po::log_format_po as log_format,
-    logger_conf
-};
 
 
 pub static LOGGER: Lazy<Logger> = Lazy::new(|| {

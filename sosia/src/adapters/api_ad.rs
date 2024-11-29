@@ -1,16 +1,8 @@
-use paperclip::actix::{
-    api_v2_operation
-};
-use actix_web::{
-    HttpResponse,
-    web::Json
-};
-use crate::services::{
-    configuration_srv as conf_srv
-};
-use crate::domain::{
-    configuration_dom::ConfigurationDom
-};
+use crate::domain::configuration_dom::ConfigurationDom;
+use crate::services::configuration_srv as conf_srv;
+use paperclip::actix::api_v2_operation;
+use actix_web::HttpResponse;
+use actix_web::web::Json;
 
 
 #[api_v2_operation]
