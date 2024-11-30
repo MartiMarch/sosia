@@ -1,6 +1,4 @@
-use crate::domain::{
-    configuration_dom::ConfigurationDom
-};
+use crate::domain::configuration_dom::ConfigurationDom;
 use crate::configuration::{
     api_conf,
     postgres_conf,
