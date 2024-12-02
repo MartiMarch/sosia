@@ -1,7 +1,7 @@
 use crate::domain::po::logger_message_type_po::LogType as LogType;
 use crate::domain::logger_message_dom::LoggerMessage as Message;
 use crate::domain::date_dom::Date as Date;
-use crate::services::logger_svc as Logger;
+use crate::services::logger_srv as Logger;
 use crate::adapters::api_ad;
 
 use paperclip::actix::web;
@@ -11,19 +11,20 @@ use std::env;
 pub fn routes(configuration: &mut web::ServiceConfig) {
     configuration
         .service(
-            web::resource("/api/v1/healthcheck").route(
-                web::get().to(api_ad::get_healthcheck)
-            )
+            web::resource("/api/v1/healthcheck")
+                .route(web::get().to(api_ad::get_healthcheck))
         )
         .service(
-            web::resource("/api/v1/configuration").route(
-                web::get().to(api_ad::get_configuration)
-            )
+            web::resource("/api/v1/configuration")
+                .route(web::get().to(api_ad::get_configuration))
         )
         .service(
-            web::resource("/api/v1/namespace").route(
-                web::get().to(api_ad::get_namespaces)
-            )
+            web::resource("/api/v1/namespace/{name}")
+                .route(web::get().to(api_ad::get_namespace))
+        )
+        .service(
+            web::resource("/api/v1/namespace")
+                .route(web::post().to(api_ad::post_namespace))
         );
 }
 

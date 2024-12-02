@@ -2,7 +2,7 @@ use crate::domain::po::logger_message_type_po::LogType as LogType;
 use crate::domain::logger_message_dom::LoggerMessage as Message;
 use crate::configuration::po::log_format_po as log_format;
 use crate::domain::date_dom::Date as Date;
-use crate::services::logger_svc as Logger;
+use crate::services::logger_srv as Logger;
 use std::env;
 
 

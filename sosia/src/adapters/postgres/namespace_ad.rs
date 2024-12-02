@@ -19,3 +19,13 @@ pub async fn get(namespace: &String) -> Result<Option<Namespace>, Error> {
        name: row.get("name"),
     }))
 }
+
+pub async fn post(namespace: &Namespace) -> Result<(), Error> {
+    let client: Object = postgres_ad::get_client().await;
+    client.execute(
+        "INSERT INTO namespace (name) VALUES ($1);",
+        &[&namespace.name.to_string() as &(dyn ToSql + Sync)]
+    ).await?;
+
+    Ok(())
+}

@@ -1,7 +1,7 @@
 use crate::domain::po::logger_message_type_po::LogType as LogType;
 use crate::domain::logger_message_dom::LoggerMessage;
 use crate::services::configuration_srv as conf_srv;
-use crate::services::logger_svc as logger_svc;
+use crate::services::logger_srv as logger_srv;
 
 use deadpool_postgres::tokio_postgres::NoTls;
 use deadpool_postgres::Runtime;
@@ -30,8 +30,8 @@ pub fn get_pool() -> &'static Pool {
 }
 
 pub async fn get_client() -> Object {
-    let message_error: String = logger_svc::log_to_str(
-        &logger_svc::str_to_log(&"Failed to initialize database client".to_string(), &LogType::ERROR)
+    let message_error: String = logger_srv::log_to_str(
+        &logger_srv::str_to_log(&"Failed to initialize database client".to_string(), &LogType::ERROR)
     );
     POSTGRES_POOL.get().await.expect(&message_error)
 }
@@ -39,13 +39,13 @@ pub async fn get_client() -> Object {
 async fn exec(sql_command: &String) {
     match get_client().await.execute(sql_command.as_str(), &[]).await {
         Ok(_) => {
-            logger_svc::log(&LoggerMessage::new_simplified(
+            logger_srv::log(&LoggerMessage::new_simplified(
                 LogType::INFO,
-                "Database 'namespace' created".to_string()
+                "Table 'namespace' created".to_string()
             ))
         },
         Err(err) => {
-            logger_svc::log(&LoggerMessage::new_simplified(
+            logger_srv::log(&LoggerMessage::new_simplified(
                 LogType::ERROR,
                 format!("Something goes wrong creating 'namespace' database: {err}")
             ))
@@ -55,9 +55,8 @@ async fn exec(sql_command: &String) {
 
 pub async fn initialize_database() {
     exec(
-        &"CREATE TABLE IF NOT EXISTS namespaces (
-            id SERIAL PRIMARY KEY,
-            name VARCHAR(255) NOT NULL
+        &"CREATE TABLE IF NOT EXISTS namespace (
+            name VARCHAR(255) NOT NULL PRIMARY KEY
         );".to_string()
     ).await;
 }
