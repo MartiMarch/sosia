@@ -16,7 +16,12 @@
                         <li><a href="#functionalities">Functionalities</a></li>
                         <li><a href="#roadmap">Roadmap</a></li>
                         <li><a href="#concepts">Concepts</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-secret" class="sidebar-subtext">Secret</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-namespace" class="sidebar-namespace">Namespace</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-organization" class="sidebar-organization">Organization</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-register" class="sidebar-organization">Register</a></li>
                         <li><a href="#documentation">Documentation</a></li>
+                        <li class="sidebar-subitem"><a href="#documentation-configuration">Configuration</a></li>
                         <li><a href="#contributions">Contributions</a></li>
                     </ul>
                 </nav>
@@ -32,6 +37,7 @@
                 </p><br>
                 <p>So, if you decide to use it, please take in consideration that the entry project is under the MIT license, and there are no guarantees or any kind of technical support in case of failure <i>(perhaps in the future, if objectives are met...)</i>.</p>
             </section><br>
+
             <section id="objectives">
                 <h1>Objectives</h1>
                 <p>
@@ -39,12 +45,14 @@
                     Additionally, the system offers the capability to audit and track events, with the ability to integrate with external tools to define its behavior.
                 </p>
             </section><br>
+
             <section id="functionalities">
                 <h1>Functionalities</h1>
                 <ul>
-                    <li>(PR0) Authorized users and administrators can create a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can delete a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can update a namespace</li><br>
+                    <li>(PR0) Authorized users and administrators can create a namespace within organization</li><br>
+                    <li>(PR0) Authorized users and administrators can delete a namespace within organization</li><br>
+                    <li>(PR0) Authorized users and administrators can update a namespace within organization</li><br>
+                    <li>(PR0) Authorized users and administrators can search a namespace within organization</li><br>
                     <li>(PR0) Authorized users and administrators can list linked groups to a namespace</li><br>
                     <li>(PR0) Authorized users and administrators can create a secret within a namespace</li><br>
                     <li>(PR0) Authorized users and administrators can delete a secret within a namespace</li><br>
@@ -52,6 +60,7 @@
                     <li>(PR0) Authorized users and administrators can update a secret</li><br>
                     <li>(PR0) Authorized users and administrators can create a group</li><br>
                     <li>(PR0) Authorized users and administrators can delete a group</li><br>
+                    <li>(PR0) Authorized users and administrators can update a group</li><br>
                     <li>(PR0) Authorized users and administrators can add a user to a group</li><br>
                     <li>(PR0) Authorized users and administrators can remove a user from a group</li><br>
                     <li>(PR0) Authorized users and administrators can manage group permissions</li><br>
@@ -92,22 +101,53 @@
                 <h1>Roadmap</h1>
                 <p>Features are linked with labels, as PR0, which means 'Principal Release 0'. It is used to create features list to divide the roadmap with the next development phases:</p>
                 <ul>
-                    <li>PR0: Single pod that can interact with database. It involves 'basic' features application and manages basic secret orchestration</li><br>
-                    <li>PR1: Can create clusters within kubernetes clusters and use parallelism to process petitions and manage database data without create conflicts</li><br>
-                    <li>PR2: Clusters can communicate with other clusters and create data replicas using custom rules</li><br>
-                    <li>PR3: System can connect to external systems and interact with </li>
+                    <li>PR0: Single pod capable of interacting with the database. Includes 'basic' feature applications and manages basic secret orchestration.</li><br>
+                    <li>PR1: Supports the creation of clusters within Kubernetes clusters, enabling parallel processing of requests and managing database data without creating conflicts.</li><br>
+                    <li>PR2: Clusters can communicate with other clusters and create data replicas using custom rules.</li><br>
+                    <li>PR3: Sosia can connect to external systems and interact change expected behaviour dynamically based on events.</li>
                 </ul>
             </section><br>
+
             <section id="concepts">
                 <h1>Concepts</h1>
-                <h3>Credential</h3>
-                <h3>Credential</h3>
+
+                <section id="concepts-secret">
+                    <h3>Secret</h3>
+                    <p>Content that will be orchestrated by Sosia. It includes a unique id <i>(within namespace)</i>, a description, a list of labels, the reference to environment variables used to encrypt/decrypt and the name of the algorithm
+                       (AES-256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish).</p><br>
+                    <div class="code-container">
+<pre><code>{
+  "id": "my secret id",
+  "description": "a secret description",
+  ""
+}</code></pre></div>
+                </section><br>
+
+                <section id="concepts-namespace">
+                    <h3>Namespace</h3>
+                    <p></p>
+                </section><br>
+
+                <section id="concepts-organization">
+                    <h3>Organization</h3>
+                </section><br>
+
+                <section id="concepts-register">
+                    <h3>Register</h3>
+                </section><br>
             </section><br>
+
             <section id="documentation">
                 <h1>Documentation</h1>
+
+                <section id="documentation-configuration">
+                    <h3>Configuration</h3>
+                </section><br>
             </section><br>
+
             <section id="contributions">
                 <h1>Contributions</h1>
+
                 <p>TODO</p>
             </section><br>
         </main>
