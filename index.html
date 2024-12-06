@@ -114,12 +114,13 @@
                 <section id="concepts-secret">
                     <h3>Secret</h3>
                     <p>Content that will be orchestrated by Sosia. It includes a unique id <i>(within namespace)</i>, a description, a list of labels, the reference to environment variables used to encrypt/decrypt and the name of the algorithm
-                       (AES-256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish).</p><br>
+                       [AES-256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish].</p><br>
                     <div class="code-container">
 <pre><code>{
   "id": "my secret id",
-  "description": "a secret description",
-  ""
+  "description": "A secret description",
+  "key": "MY_ENVIRONMENT_VARIABLE_POINTING_ENCRYPTION_KEY",
+  "labels": ["custom label 1", "custom label 2"]
 }</code></pre></div>
                 </section><br>
 
