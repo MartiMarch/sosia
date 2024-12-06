@@ -11,18 +11,18 @@
             <aside class="sidebar">
                 <nav>
                     <ul>
-                        <li><a href="#introduction">Introduction</a></li>
-                        <li><a href="#objectives">Objectives</a></li>
-                        <li><a href="#functionalities">Functionalities</a></li>
-                        <li><a href="#roadmap">Roadmap</a></li>
-                        <li><a href="#concepts">Concepts</a></li>
+                        <li class="nostyle"><a href="#introduction">Introduction</a></li>
+                        <li class="nostyle"><a href="#objectives">Objectives</a></li>
+                        <li class="nostyle"><a href="#functionalities">Functionalities</a></li>
+                        <li class="nostyle"><a href="#roadmap">Roadmap</a></li>
+                        <li class="nostyle"><a href="#concepts">Concepts</a></li>
                         <li class="sidebar-subitem"><a href="#concepts-secret" class="sidebar-subtext">Secret</a></li>
                         <li class="sidebar-subitem"><a href="#concepts-namespace" class="sidebar-namespace">Namespace</a></li>
                         <li class="sidebar-subitem"><a href="#concepts-organization" class="sidebar-organization">Organization</a></li>
                         <li class="sidebar-subitem"><a href="#concepts-register" class="sidebar-organization">Register</a></li>
-                        <li><a href="#documentation">Documentation</a></li>
+                        <li class="nostyle"><a href="#documentation">Documentation</a></li>
                         <li class="sidebar-subitem"><a href="#documentation-configuration">Configuration</a></li>
-                        <li><a href="#contributions">Contributions</a></li>
+                        <li class="nostyle"><a href="#contributions">Contributions</a></li>
                     </ul>
                 </nav>
             </aside>
@@ -34,7 +34,7 @@
                 <p>
                    Sosia has been created to achieve a high-performance secrets orchestrator in a distributed scenario <i>(within a cluster and across geographically distributed clusters)</i>.
                    For now, it is a personal project, but the idea is use it in my own environments, focusing on the need to combine cloud and on-premise infrastructure.
-                </p><br>
+                </p>
                 <p>So, if you decide to use it, please take in consideration that the entry project is under the MIT license, and there are no guarantees or any kind of technical support in case of failure <i>(perhaps in the future, if objectives are met...)</i>.</p>
             </section><br>
 
@@ -48,62 +48,63 @@
 
             <section id="functionalities">
                 <h1>Functionalities</h1>
+                <p>Functionalities inventory:</p>
                 <ul>
-                    <li>(PR0) Authorized users and administrators can create a namespace within organization</li><br>
-                    <li>(PR0) Authorized users and administrators can delete a namespace within organization</li><br>
-                    <li>(PR0) Authorized users and administrators can update a namespace within organization</li><br>
-                    <li>(PR0) Authorized users and administrators can search a namespace within organization</li><br>
-                    <li>(PR0) Authorized users and administrators can list linked groups to a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can create a secret within a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can delete a secret within a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can get a secret using valid temporal tokens</li><br>
-                    <li>(PR0) Authorized users and administrators can update a secret</li><br>
-                    <li>(PR0) Authorized users and administrators can create a group</li><br>
-                    <li>(PR0) Authorized users and administrators can delete a group</li><br>
-                    <li>(PR0) Authorized users and administrators can update a group</li><br>
-                    <li>(PR0) Authorized users and administrators can add a user to a group</li><br>
-                    <li>(PR0) Authorized users and administrators can remove a user from a group</li><br>
-                    <li>(PR0) Authorized users and administrators can manage group permissions</li><br>
-                    <li>(PR0) Authorized users and administrators can list group permissions and users</li><br>
-                    <li>(PR0) Authorized users and administrators can link a group to a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can unlink a group from a namespace</li><br>
-                    <li>(PR0) Authorized users and administrators can create a user if it does not exist in OAuth</li><br>
-                    <li>(PR0) Authorized users and administrators can create organizations</li><br>
-                    <li>(PR0) Authorized users and administrators can delete organizations</li><br>
-                    <li>(PR0) Authorized users and administrators can create namespaces within organizations</li><br>
-                    <li>(PR0) Authorized users and administrators can delete namespaces within organizations</li><br>
-                    <li>(PR0) Administrators can block a user</li><br>
-                    <li>(PR0) Administrators can list users</li><br>
-                    <li>(PR0) Administrators can check groups where users have been added</li><br>
-                    <li>(PR0) Administrators can convert any user to an administrator</li><br>
-                    <li>(PR0) Administrators can convert any administrator to a user</li><br>
-                    <li>(PR0) Register administrator permission changes (when, which, and who)</li><br>
-                    <li>(PR0) Register namespace access events</li><br>
-                    <li>(PR0) Authorized users and administrators can list namespace access events</li><br>
-                    <li>(PR0) Register secrets access events</li><br>
-                    <li>(PR0) Authorized users and administrators can list secrets access events</li><br>
-                    <li>(PR0) No OAuth users can create an API Key with an expiration date</li><br>
-                    <li>(PR0) No OAuth users can block their own API Key</li><br>
-                    <li>(PR0) Authorized users and administrators can delete an API Key</li><br>
-                    <li>(PR0) Authorized users and administrators can list API Key usages</li><br>
-                    <li>(PR0) Authorized users and administrators can invalidate an API Key</li><br>
-                    <li>(PR0) Users can log in with or without OAuth</li><br>
-                    <li>(PR0) Users and administrators can update their own information</li><br>
-                    <li>(PR1) Authorized users and administrators can define cluster member authentication custom rules</li><br>
-                    <li>(PR1) Authorized users and administrators can define cluster authentication custom rules</li><br>
-                    <li>(PR1) Members can be added to cluster using temporal tokens</li><br>
-                    <li>(PR1) TODO</li><br>
-                    <li>(PR2) Authorized users and administrators can define organization replication criteria</li><br>
-                    <li>(PR3) TODO</li><br>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can create a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can delete a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can update a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can search a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can list linked groups to a namespace</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can create a secret within a namespace</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can delete a secret within a namespace</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can get a secret using valid temporal tokens</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can update a secret</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can create a group</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can delete a group</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can update a group</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can add a user to a group</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can remove a user from a group</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can manage group permissions</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can list group permissions and users</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can link a group to a namespace</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can unlink a group from a namespace</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can create a user if it does not exist in OAuth</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can create organizations</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can delete organizations</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can create namespaces within organizations</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can delete namespaces within organizations</li>
+                    <li><span class="label">(PR0)</span> Administrators can block a user</li>
+                    <li><span class="label">(PR0)</span> Administrators can list users</li>
+                    <li><span class="label">(PR0)</span> Administrators can check groups where users have been added</li>
+                    <li><span class="label">(PR0)</span> Administrators can convert any user to an administrator</li>
+                    <li><span class="label">(PR0)</span> Administrators can convert any administrator to a user</li>
+                    <li><span class="label">(PR0)</span> Register administrator permission changes (when, which, and who)</li>
+                    <li><span class="label">(PR0)</span> Register namespace access events</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can list namespace access events</li>
+                    <li><span class="label">(PR0)</span> Register secrets access events</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can list secrets access events</li>
+                    <li><span class="label">(PR0)</span> No OAuth users can create an API Key with an expiration date</li>
+                    <li><span class="label">(PR0)</span> No OAuth users can block their own API Key</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can delete an API Key</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can list API Key usages</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can invalidate an API Key</li>
+                    <li><span class="label">(PR0)</span> Users can log in with or without OAuth</li>
+                    <li><span class="label">(PR0)</span> Users and administrators can update their own information</li>
+                    <li><span class="label">(PR1)</span> Authorized users and administrators can define cluster member authentication custom rules</li>
+                    <li><span class="label">(PR1)</span> Authorized users and administrators can define cluster authentication custom rules</li>
+                    <li><span class="label">(PR1)</span> Members can be added to cluster using temporal tokens</li>
+                    <li><span class="label">(PR1)</span> TODO</li>
+                    <li><span class="label">(PR2)</span> Authorized users and administrators can define organization replication criteria</li>
+                    <li><span class="label">(PR3)</span> TODO</li>
                 </ul>
             </section><br>
             <section id="roadmap">
                 <h1>Roadmap</h1>
                 <p>Features are linked with labels, as PR0, which means 'Principal Release 0'. It is used to create features list to divide the roadmap with the next development phases:</p>
                 <ul>
-                    <li>PR0: Single pod capable of interacting with the database. Includes 'basic' feature applications and manages basic secret orchestration.</li><br>
-                    <li>PR1: Supports the creation of clusters within Kubernetes clusters, enabling parallel processing of requests and managing database data without creating conflicts.</li><br>
-                    <li>PR2: Clusters can communicate with other clusters and create data replicas using custom rules.</li><br>
+                    <li>PR0: Single pod capable of interacting with the database. Includes 'basic' feature applications and manages basic secret orchestration.</li>
+                    <li>PR1: Supports the creation of clusters within Kubernetes clusters, enabling parallel processing of requests and managing database data without creating conflicts.</li>
+                    <li>PR2: Clusters can communicate with other clusters and create data replicas using custom rules.</li>
                     <li>PR3: Sosia can connect to external systems and interact change expected behaviour dynamically based on events.</li>
                 </ul>
             </section><br>
@@ -112,29 +113,41 @@
                 <h1>Concepts</h1>
 
                 <section id="concepts-secret">
-                    <h3>Secret</h3>
-                    <p>Content that will be orchestrated by Sosia. It includes a unique id <i>(within namespace)</i>, a description, a list of labels, the reference to environment variables used to encrypt/decrypt and the name of the algorithm
-                       [AES-256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish].</p><br>
-                    <div class="code-container">
-<pre><code>{
-  "id": "my secret id",
+                    <h2>Secret</h2>
+                    <p>Confidential content that will be orchestrated by Sosia. It includes a unique ID <i>(within namespace)</i>, a description, a list of labels, a reference to environment variables used to encrypt/decrypt and the name of the algorithm
+                       [AES256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish].</p>
+<div class="code-container"><pre><code>{
+  "id": "mysecretid",
+  "content": "fakePassword1234",
   "description": "A secret description",
   "key": "MY_ENVIRONMENT_VARIABLE_POINTING_ENCRYPTION_KEY",
-  "labels": ["custom label 1", "custom label 2"]
-}</code></pre></div>
+  "labels": ["custom label 1", "custom label 2"],
+  "encrypt": "AES-256"
+}</code></pre></div><br>
+                    <p>To use a custom encrypt/decrypt algorithm, parameter <span class="subcode">encrypt</span> must be set to <span class="subcode">CUSTOM</span>. The referenced environment variable (<span class="subcode">key</span>) will then be used
+                       as the encryption key to process Kafka message. This means there could be a service monitoring the Sosia encryption topic.The secrets used during this process must be configured on both sides: Sosia and the external service. Additionally,
+                       topic configurations can be established. Please refer to the configuration section for more details.
+                    </p><br>
+                    <div class="code-container"><pre><code>{
+  "id": "mysecretid",
+  "content": "fakePassword1234",
+  "description": "A secret description",
+  "key": "MY_ENVIRONMENT_VARIABLE_POINTING_ENCRYPTION_TOPIC_KEY",
+  "labels": ["custom label 1", "custom label 2"],
+  "encrypt": "CUSTOM"
+}</code></pre></div><br>
                 </section><br>
-
                 <section id="concepts-namespace">
-                    <h3>Namespace</h3>
+                    <h2>Namespace</h2>
                     <p></p>
                 </section><br>
 
                 <section id="concepts-organization">
-                    <h3>Organization</h3>
+                    <h2>Organization</h2>
                 </section><br>
 
                 <section id="concepts-register">
-                    <h3>Register</h3>
+                    <h2>Register</h2>
                 </section><br>
             </section><br>
 
@@ -142,7 +155,7 @@
                 <h1>Documentation</h1>
 
                 <section id="documentation-configuration">
-                    <h3>Configuration</h3>
+                    <h2>Configuration</h2>
                 </section><br>
             </section><br>
 
@@ -154,7 +167,7 @@
         </main>
 
         <footer>
-            <p><a href="https://github.com/MartiMarch/sosia" target="_blank"><img src="htmldocs/images/github-icon.png" width="25" height="23"></a> Created by Marti March</p>
+            <a href="https://github.com/MartiMarch/sosia" target="_blank"><img src="htmldocs/images/github-icon.png" width="25" height="23"></a> Created by Marti March
         </footer>
 
     </body>

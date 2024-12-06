@@ -1,5 +1,6 @@
 body {
-    font-family: 'Helvetica', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
     background-color: rgba(2, 13, 16, 0.86);
     margin: 0;
     padding: 0;
@@ -7,6 +8,7 @@ body {
 }
 
 footer {
+    font-family: unset;
     background-color: #171717;
     color: #fff7e6;
     text-align: center;
@@ -17,14 +19,67 @@ footer {
 }
 
 p {
-    width: 100%;
-    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: white;
+    margin: 0 0 1rem 0;
 }
+
+li {
+    color: white;
+    margin: 0 0 0.6rem 0;
+    list-style-type: none;
+}
+
+li::before {
+    content: '>';
+    color:  greenyellow;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+li.nostyle{
+    margin: 0 0 0.5rem 0;
+}
+li.nostyle::before {
+    all: unset
+}
+.sidebar-subitem::before {
+    all: unset;
+}
+
 
 main {
     margin-left: 210px;
     padding: 1rem;
     width: calc(95% - 250px);
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #f5f5f5;
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid darkolivegreen;
+    padding-bottom: 8px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+h1:hover {
+    color: navajowhite;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #f5f5f5;
+    text-align: left;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7)
+}
+
+h2:hover {
+    color: navajowhite;
 }
 
 .container {
@@ -38,7 +93,7 @@ main {
     left: 0;
     width: 140px;
     height: 100vh;
-    background-color: rgba(23, 23, 23, 0.63);
+    background-color: darkolivegreen;
     color: #fdf4d9;
     padding: 1rem;
     overflow-y: auto;
@@ -47,11 +102,11 @@ main {
 .sidebar nav ul li.sidebar-subitem a {
     font-size: 0.90rem;
     margin-left: 1rem;
-    color: #fdf4d9;
+    color: white;
 }
 
 .sidebar nav ul li.sidebar-subitem a:hover {
-    color: white;
+    color: navajowhite;
 }
 
 .sidebar nav ul {
@@ -66,17 +121,17 @@ main {
 
 .sidebar nav ul li a {
     text-decoration: none;
-    color: #fdf4d9;
+    color: white;
     font-weight: bold;
 }
 
 .sidebar nav ul li a:hover {
-    color: white;
+    color: navajowhite;
 }
 
 .code-container {
-    background-color: rgba(23, 23, 23, 0.63);
-    color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.63);
+    color: white;
     padding: 1rem;
     border-radius: 5px;
     overflow-x: auto;
@@ -97,4 +152,19 @@ code {
     font-family: 'Courier New', Courier, monospace;
 }
 
+.label {
+    background-color: navajowhite;
+    padding: 2px;
+    border-radius: 4px;
+    color: darkolivegreen;
+    font-weight: bold;
+}
+
+.subcode {
+    background-color: navajowhite;
+    padding: 1px;
+    border-radius: 4px;
+    color: darkolivegreen;
+    font-weight: bold;
+}
 
