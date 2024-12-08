@@ -82,6 +82,29 @@ h2:hover {
     color: navajowhite;
 }
 
+table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+th, td {
+    border: 1px solid navajowhite;
+    padding: 8px;
+}
+
+th {
+    background-color: rgba(2, 13, 16, 0.86);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
 .container {
     display: flex;
     width: 100%;

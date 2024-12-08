@@ -20,6 +20,7 @@
                         <li class="sidebar-subitem"><a href="#concepts-namespace" class="sidebar-namespace">Namespace</a></li>
                         <li class="sidebar-subitem"><a href="#concepts-organization" class="sidebar-organization">Organization</a></li>
                         <li class="sidebar-subitem"><a href="#concepts-register" class="sidebar-organization">Register</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-group" class="sidebar-organization">Group</a></li>
                         <li class="nostyle"><a href="#documentation">Documentation</a></li>
                         <li class="sidebar-subitem"><a href="#documentation-configuration">Configuration</a></li>
                         <li class="nostyle"><a href="#contributions">Contributions</a></li>
@@ -57,6 +58,7 @@
                     <li><span class="label">(PR0)</span> Authorized users and administrators can list linked groups to a namespace</li>
                     <li><span class="label">(PR0)</span> Authorized users and administrators can create a secret within a namespace</li>
                     <li><span class="label">(PR0)</span> Authorized users and administrators can delete a secret within a namespace</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can block a secret within a namespace</li>
                     <li><span class="label">(PR0)</span> Authorized users and administrators can get a secret using valid temporal tokens</li>
                     <li><span class="label">(PR0)</span> Authorized users and administrators can update a secret</li>
                     <li><span class="label">(PR0)</span> Authorized users and administrators can create a group</li>
@@ -78,10 +80,14 @@
                     <li><span class="label">(PR0)</span> Administrators can check groups where users have been added</li>
                     <li><span class="label">(PR0)</span> Administrators can convert any user to an administrator</li>
                     <li><span class="label">(PR0)</span> Administrators can convert any administrator to a user</li>
-                    <li><span class="label">(PR0)</span> Register administrator permission changes (when, which, and who)</li>
+                    <li><span class="label">(PR0)</span> Register administrator permission changes</li>
                     <li><span class="label">(PR0)</span> Register namespace access events</li>
-                    <li><span class="label">(PR0)</span> Authorized users and administrators can list namespace access events</li>
                     <li><span class="label">(PR0)</span> Register secrets access events</li>
+                    <li><span class="label">(PR0)</span> Register organization events</li>
+                    <li><span class="label">(PR0)</span> Register group events</li>
+                    <li><span class="label">(PR0)</span> Register users events</li>
+                    <li><span class="label">(PR0)</span> Register API Key events</li>
+                    <li><span class="label">(PR0)</span> Authorized users and administrators can list namespace access events</li>
                     <li><span class="label">(PR0)</span> Authorized users and administrators can list secrets access events</li>
                     <li><span class="label">(PR0)</span> No OAuth users can create an API Key with an expiration date</li>
                     <li><span class="label">(PR0)</span> No OAuth users can block their own API Key</li>
@@ -114,8 +120,10 @@
 
                 <section id="concepts-secret">
                     <h2>Secret</h2>
-                    <p>Confidential content that will be orchestrated by Sosia. It includes a unique ID <i>(within namespace)</i>, a description, a list of labels, a reference to environment variables used to encrypt/decrypt and the name of the algorithm
-                       [AES256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish].</p>
+                    <p>
+                        Confidential content that will be orchestrated by Sosia. It includes a unique ID <i>(within namespace)</i>, a description, a list of labels, a reference to environment variables used to encrypt/decrypt and the name of the algorithm
+                        [AES256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish].
+                    </p>
 <div class="code-container"><pre><code>{
   "id": "mysecretid",
   "content": "fakePassword1234",
@@ -124,11 +132,12 @@
   "labels": ["custom label 1", "custom label 2"],
   "encrypt": "AES-256"
 }</code></pre></div><br>
-                    <p>To use a custom encrypt/decrypt algorithm, parameter <span class="subcode">encrypt</span> must be set to <span class="subcode">CUSTOM</span>. The referenced environment variable (<span class="subcode">key</span>) will then be used
-                       as the encryption key to process Kafka message. This means there could be a service monitoring the Sosia encryption topic.The secrets used during this process must be configured on both sides: Sosia and the external service. Additionally,
-                       topic configurations can be established. Please refer to the configuration section for more details.
+                    <p>
+                        To use a custom encrypt/decrypt algorithm, parameter <span class="subcode">encrypt</span> must be set to <span class="subcode">CUSTOM</span>. The referenced environment variable (<span class="subcode">key</span>) will then be used
+                        as the encryption key to process Kafka message. This means there could be a service monitoring the Sosia encryption topic.The secrets used during this process must be configured on both sides: Sosia and the external service. Additionally,
+                        topic configurations can be established. Please refer to the configuration section for more details.
                     </p><br>
-                    <div class="code-container"><pre><code>{
+<div class="code-container"><pre><code>{
   "id": "mysecretid",
   "content": "fakePassword1234",
   "description": "A secret description",
@@ -139,19 +148,93 @@
                     <div style="text-align: center;">
                         <img src="htmldocs/images/concepts-secret.png">
                     </div>
-                </section><br>
+                </section>
                 <section id="concepts-namespace">
                     <h2>Namespace</h2>
-                    <p></p>
-                </section><br>
+                    <p>
+                        A namespace is group of secrets. It also belongs to an organization. The relationships between namespace and secret, and namespace and organization, are <span class="subcode">1:N</span> and <span class="subcode">N:1</span> respectively.
+                    </p>
+<div class="code-container"><pre><code>{
+    "id": "mynamespace",
+    "description": "Namespace description",
+    "labels": ["custom label 1", "custom label 2"]
+}</code></pre></div><br>
+                </section>
 
                 <section id="concepts-organization">
                     <h2>Organization</h2>
+                    <p>
+                        An organization is a group of namespaces.
+                    </p>
+<div class="code-container"><pre><code>{
+    "id": "myorganization",
+    "description": "Organization description",
+    "labels": ["custom label 1", "custom label 2"]
+}</code></pre></div><br><br>
+                    <div style="text-align: center;">
+                        <img src="htmldocs/images/concepts-organization.png">
+                    </div>
                 </section><br>
 
                 <section id="concepts-register">
                     <h2>Register</h2>
+                    <p>
+                        Every "relevant" event are registered to audit Sosia events and published in Kafka. Tracked things:
+                    </p>
+                    <ul>
+                        <li>Administrator permissions changes such as revoke user administrator status</li>
+                        <li>Namespace creation, deletion, update, namespace addition, namespace deletion, group addition and group deletion</li>
+                        <li>Secret access, creation, deletion, block and update</li>
+                        <li>Organization creation, deletion, update, namespace addition, namespace deletion, group addition and group deletion</li>
+                        <li>Group creation, deletion, update, user addition and user deletion</li>
+                        <li>User block, administrator permissions changes and creation/deletion (only with no OAuth users)</li>
+                        <li>API Key creation, deletion, update and block</li>
+                    </ul><br>
+                    <p>
+                        Data published into kafka message:
+                    </p>
+                    <table>
+                        <tr>
+                            <th>source</th>
+                            <th>action</th>
+                            <th>trigger.type</th>
+                        </tr>
+                        <tr>
+                            <th>namespace, administrator, secret, organization, group, user or apikey</th>
+                            <th>creation, deletion, update, block, access or addition</th>
+                            <th>user, admin or system</th>
+                        </tr>
+                    </table><br>
+<div class="code-container"><pre><code>{
+    "source": "namespace",
+    "date": "2024-12-07T14:30:45+02:00",
+    "trigger": {
+        type: "user",
+        id: "fakeusername"
+    },
+    "action": "creation",
+    "description": "Namespace was created",
+    "data": {
+        "id": "mynamespace",
+        "description": "Namespace description",
+        "labels": ["custom label 1", "custom label 2"]
+    }
+}</code></pre></div><br>
                 </section><br>
+
+                <section id="concepts-group">
+                    <h2>Group</h2>
+                    <p>
+                        Used to manage users permissions, groups can be assigned to an organization or a namespace. Configuration follows an inheritance model: if a permission is granted at the organization level, the group will propagate those permissions
+                        to all namespaces. On the other hand, if group permissions are configured for a specific namespace, they will override organization-level configuration for that namespace.
+                    </p>
+<div class="code-container"><pre><code>{
+    "name": "groupname",
+    "users": [" esrname1", "username2"],
+    "labels": ["custom label 1", "custom label 2"]
+}</code></pre></div><br>
+                </section><br>
+
             </section><br>
 
             <section id="documentation">
