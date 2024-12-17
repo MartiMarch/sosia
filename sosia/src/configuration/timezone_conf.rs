@@ -2,6 +2,10 @@ use chrono_tz::Tz;
 use std::env;
 
 
+pub fn initialize() -> () {
+    get();
+}
+
 pub fn get() -> String {
     let timezone = env::var("TIMEZONE")
         .unwrap_or_else(|_| "UTC".to_string());

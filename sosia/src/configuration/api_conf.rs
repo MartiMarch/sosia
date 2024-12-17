@@ -8,6 +8,12 @@ use paperclip::actix::web;
 use std::env;
 
 
+pub fn initialize() -> () {
+    port();
+    network_interface();
+    workers();
+}
+
 pub fn routes(configuration: &mut web::ServiceConfig) {
     configuration
         .service(

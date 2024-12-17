@@ -5,6 +5,10 @@ use crate::domain::date_dom::Date as Date;
 use crate::services::logger_srv as Logger;
 use std::env;
 
+pub fn initialize() -> () {
+    format();
+}
+
 
 pub fn format() -> log_format::LogFormat {
     let log_format: String = env::var("LOG_FORMAT")

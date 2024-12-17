@@ -14,5 +14,8 @@ pub struct ConfigurationDom {
     pub postgres_port: u16,
     pub postgres_database: String,
     pub timezone: String,
-    pub logger_format: log_format::LogFormat
+    pub logger_format: log_format::LogFormat,
+    pub oauth2_client_id: String,
+    pub oauth2_client_secret: String,
+    pub oauth2_url: String
 }

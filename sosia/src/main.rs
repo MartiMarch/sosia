@@ -1,27 +1,33 @@
+mod configuration;
 mod adapters;
 mod services;
 mod domain;
-mod configuration;
 
-use actix_web::App;
+use paperclip::actix::OpenApiExt;
 use actix_web::HttpServer;
 use adapters::postgres_ad;
-use configuration::api_conf;
-use paperclip::actix::OpenApiExt;
+use actix_web::App;
 
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    configuration::postgres_conf::initialize();
+    configuration::oauth2_conf::initialize();
+    configuration::logger_conf::initialize();
+    configuration::timezone_conf::initialize();
+    configuration::api_conf::initialize();
+
     postgres_ad::initialize_database().await;
+
     HttpServer::new(||
         App::new()
             .wrap_api()
-            .configure(api_conf::routes)
+            .configure(configuration::api_conf::routes)
             .with_json_spec_at("/api/v1/swagger")
             .build()
     )
-        .workers(1)
-        .bind((api_conf::network_interface(), api_conf::port()))?
+        .workers(configuration::api_conf::workers())
+        .bind((configuration::api_conf::network_interface(), configuration::api_conf::port()))?
         .run()
         .await
 }

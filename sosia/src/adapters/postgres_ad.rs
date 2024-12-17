@@ -1,7 +1,7 @@
 use crate::domain::po::logger_message_type_po::LogType as LogType;
 use crate::domain::logger_message_dom::LoggerMessage;
-use crate::services::configuration_srv as conf_srv;
-use crate::services::logger_srv as logger_srv;
+use crate::configuration::postgres_conf;
+use crate::services::logger_srv;
 
 use deadpool_postgres::tokio_postgres::NoTls;
 use deadpool_postgres::Runtime;
@@ -13,11 +13,11 @@ use once_cell::sync::Lazy;
 
 static POSTGRES_POOL: Lazy<Pool> = Lazy::new(|| {
     let configuration = Config {
-        user: Some(conf_srv::get(None).postgres_user.clone()),
-        password:Some(conf_srv::get(None).postgres_password.clone()),
-        host: Some(conf_srv::get(None).postgres_host.clone()),
-        port: Some(conf_srv::get(None).postgres_port.clone()),
-        dbname: Some(conf_srv::get(None).postgres_database.clone()),
+        user: Some(postgres_conf::user()),
+        password: Some(postgres_conf::password()),
+        host: Some(postgres_conf::host()),
+        port: Some(postgres_conf::port()),
+        dbname: Some(postgres_conf::database()),
         ..Default::default()
     };
     configuration.create_pool(Some(Runtime::Tokio1), NoTls)

@@ -5,8 +5,25 @@ use crate::services::logger_srv as Logger;
 use std::env;
 
 
+pub fn initialize() -> () {
+    user();
+    password();
+    host();
+    port();
+    database();
+}
+
 pub fn user() -> String {
-    env::var("POSTGRES_USER").unwrap_or("postgres".to_string())
+    env::var("POSTGRES_USER").unwrap_or_else(|_| {
+        let error_msg = "Postgres password must be configured using POSTGRES_USER environment variable".to_string();
+        Logger::log(&LoggerMessage{
+            log_type: LogType::ERROR,
+            date: Date::new_with_current_time(),
+            message: error_msg.clone()
+        });
+
+        "postgres".to_string()
+    })
 }
 
 pub fn password() -> String {
