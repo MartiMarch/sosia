@@ -3,13 +3,11 @@ use crate::domain::logger_message_dom::LoggerMessage;
 use crate::domain::namespace_dom::Namespace;
 use crate::adapters::postgres::namespace_ad;
 use crate::services::logger_srv as Logger;
-use crate::services::user_srv;
 
 use actix_web::HttpRequest;
 
 
 pub async fn get(request: &HttpRequest, namespace_name: &String) -> Result<Namespace, String> {
-    user_srv::validate(request).await;
 
     let namespace = namespace_ad::get(namespace_name);
     match namespace.await {
@@ -23,8 +21,6 @@ pub async fn get(request: &HttpRequest, namespace_name: &String) -> Result<Names
 }
 
 pub async fn post(request: &HttpRequest, namespace: &Namespace) -> Result<String, String> {
-    user_srv::validate(request).await;
-
     match namespace_ad::post(namespace).await {
         Ok(()) => {
             let message: LoggerMessage = Logger::str_to_log(

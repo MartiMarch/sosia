@@ -16,8 +16,8 @@ pub async fn get_healthcheck() -> HttpResponse {
 }
 
 #[api_v2_operation]
-pub async fn get_configuration(request: HttpRequest) -> Json<ConfigurationDom> {
-    Json(conf_srv::get(&request, Some(true)).await)
+pub async fn get_configuration(request: HttpRequest) -> HttpResponse {
+    conf_srv::get(&request, Some(true)).await
 }
 
 #[api_v2_operation]

@@ -4,15 +4,15 @@ use crate::configuration::timezone_conf;
 use crate::configuration::logger_conf;
 use crate::configuration::oauth2_conf;
 use crate::configuration::api_conf;
-use crate::services::user_srv;
+use crate::adapters::oauth2_ad;
 
-use actix_web::HttpRequest;
+use actix_web::{HttpRequest, HttpResponse};
 
+pub async fn get(request: &HttpRequest, is_secured: Option<bool>) -> HttpResponse {
+    if !oauth2_ad::is_valid_token(&request).await {
+        return HttpResponse::Unauthorized().body("Unauthorized")
+    }
 
-pub async fn get(request: &HttpRequest, is_secured: Option<bool>) -> ConfigurationDom {
-    user_srv::validate(&request).await;
-
-    let is_secured = is_secured.unwrap_or(false);
     let mut configuration = ConfigurationDom {
         api_port: api_conf::port(),
         api_network_interface: api_conf::network_interface(),
@@ -28,11 +28,12 @@ pub async fn get(request: &HttpRequest, is_secured: Option<bool>) -> Configurati
         oauth2_url: oauth2_conf::url().to_string()
     };
 
-    if is_secured {
+    if is_secured.unwrap_or(false) {
         configuration.postgres_user = "****".to_string();
         configuration.postgres_password = "****".to_string();
         configuration.oauth2_client_id = "****".to_string();
         configuration.oauth2_client_secret = "****".to_string();
     }
-    configuration
+
+    HttpResponse::Ok().json(configuration)
 }
