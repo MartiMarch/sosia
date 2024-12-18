@@ -8,8 +8,9 @@ use crate::adapters::oauth2_ad;
 
 use actix_web::{HttpRequest, HttpResponse};
 
+
 pub async fn get(request: &HttpRequest, is_secured: Option<bool>) -> HttpResponse {
-    if !oauth2_ad::is_valid_token(&request).await {
+    if oauth2_ad::is_valid_token(&request).await == false {
         return HttpResponse::Unauthorized().body("Unauthorized")
     }
 
