@@ -1,4 +1,3 @@
-use crate::domain::configuration_dom::ConfigurationDom;
 use crate::services::namespace_srv as namespace_srv;
 use crate::services::configuration_srv as conf_srv;
 use crate::domain::namespace_dom::Namespace;
