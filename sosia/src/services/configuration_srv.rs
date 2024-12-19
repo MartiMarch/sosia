@@ -6,12 +6,19 @@ use crate::configuration::oauth2_conf;
 use crate::configuration::api_conf;
 use crate::adapters::oauth2_ad;
 
+use crate::domain::po::logger_message_type_po::LogType;
+use crate::domain::logger_message_dom::LoggerMessage;
+
 use actix_web::{HttpRequest, HttpResponse};
 
 
 pub async fn get(request: &HttpRequest, is_secured: Option<bool>) -> HttpResponse {
     if oauth2_ad::is_valid_token(&request).await == false {
-        return HttpResponse::Unauthorized().body("Unauthorized")
+        let custom_http_error = LoggerMessage::new_simplified(
+            LogType::ERROR,
+            "Unauthorized by Oauth2".to_string()
+        );
+        return HttpResponse::Unauthorized().json(custom_http_error)
     }
 
     let mut configuration = ConfigurationDom {

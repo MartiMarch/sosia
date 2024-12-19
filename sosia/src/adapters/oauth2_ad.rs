@@ -7,13 +7,15 @@ use crate::domain::date_dom::Date;
 use actix_web::HttpRequest;
 use serde_json::Value;
 use reqwest::Client;
-use reqwest::Result;
 use base64::encode;
 
 
 pub async fn is_valid_token(request: &HttpRequest) -> bool {
     let authorization_header = match request.headers().get("Authorization") {
-        Some(v) => v.to_str().unwrap(),
+        Some(header ) => match header.to_str() {
+            Ok(header_as_string) => header_as_string,
+            Err(_) => return false
+        },
         None => return false
     };
 
@@ -35,23 +37,12 @@ pub async fn is_valid_token(request: &HttpRequest) -> bool {
         .send()
         .await {
             Ok(response) => {
-                let parsed_json: Result<Value> = response.json::<Value>().await;
-                if let Err(err) = parsed_json {
-                    let error_msg = format!("User authentication failed. Oauth service have returned a non parseable json response: {}", err);
-                    Logger::log(&LoggerMessage{
-                        log_type: LogType::ERROR,
-                        date: Date::new_with_current_time(),
-                        message: error_msg.clone()
-                    });
-
-                    false
-                } else {
-                    parsed_json
-                        .unwrap()
-                        .get("active")
-                        .and_then(|value| value.as_bool())
-                        .unwrap_or_else(|| false)
-                }
+                response.json::<Value>().await
+                    .ok()
+                    .and_then(|json| {
+                        json.get("active").and_then(|active| active.as_bool())
+                    })
+                    .unwrap_or(false)
             },
             Err(err) => {
                 let error_message = format!("Something goes wrong calling OAuth service: {}", err);
