@@ -1,0 +1,12 @@
+keycloak:
+  auth:
+    adminUser: admin
+    adminPassword: admin
+  service:
+    type: ClusterIP
+  ingress:
+    enabled: false
+  persistence:
+    enabled: true
+    size: 4Gi
+    storageClass: standard

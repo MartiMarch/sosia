@@ -1,0 +1,10 @@
+apiVersion: v2
+name: sosia-keycloak
+description: A Helm chart for Kubernetes
+type: application
+version: 0.0.0
+appVersion: "1.16.0"
+dependencies:
+  - name: keycloak
+    version: 18.0.2
+    repository: https://charts.bitnami.com/bitnami

@@ -1,0 +1,14 @@
+use paperclip::actix::Apiv2Schema;
+use serde::Deserialize;
+use serde::Serialize;
+
+
+#[derive(Debug, Serialize, Deserialize, Apiv2Schema)]
+pub struct Database {
+    name: String,
+    host: String,
+    port: u16,
+    user: String,
+    password: String,
+    database: String,
+}

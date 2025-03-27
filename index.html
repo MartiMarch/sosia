@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Sosia</title>
+        <link rel="stylesheet" href="htmldocs/styles.css">
+        <link rel="shortcut icon" href="htmldocs/images/sosia-logo.ico" type="image/x-icon">
+    </head>
+    <body>
+        <div class="container">
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li class="nostyle"><a href="#introduction">Introduction</a></li>
+                        <li class="nostyle"><a href="#objectives">Objectives</a></li>
+                        <li class="nostyle"><a href="#functionalities">Functionalities</a></li>
+                        <li class="nostyle"><a href="#roadmap">Roadmap</a></li>
+                        <li class="nostyle"><a href="#concepts">Concepts</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-secret" class="sidebar-subtext">Secret</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-namespace" class="sidebar-namespace">Namespace</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-organization" class="sidebar-organization">Organization</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-register" class="sidebar-organization">Register</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-group" class="sidebar-organization">Group</a></li>
+                        <li class="sidebar-subitem"><a href="#concepts-user" class="sidebar-user">User</a></li>
+                        <li class="nostyle"><a href="#documentation">Documentation</a></li>
+                        <li class="sidebar-subitem"><a href="#documentation-configuration">Configuration</a></li>
+                        <li class="nostyle"><a href="#contributions">Contributions</a></li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+
+        <main>
+            <section id="introduction">
+                <h1>Introduction</h1>
+                <p>
+                   Sosia has been created to achieve a high-performance secrets orchestrator in a distributed scenario <i>(within a cluster and across geographically distributed clusters)</i>.
+                   For now, it is a personal project, but the idea is use it in my own environments, focusing on the need to combine cloud and on-premise infrastructure.
+                </p>
+                <p>So, if you decide to use it, please take in consideration that the entry project is under the MIT license, and there are no guarantees or any kind of technical support in case of failure <i>(perhaps in the future, if objectives are met...)</i>.</p>
+            </section><br>
+
+            <section id="objectives">
+                <h1>Objectives</h1>
+                <p>
+                    Provide a high-availability system resilient to failures in distributed environments based on containers, specifically kubernetes, while ensuring security principles such as confidentiality, integrity and authentication.
+                    Additionally, the system offers the capability to audit and track events, with the ability to integrate with external tools to define its behavior.
+                </p>
+            </section><br>
+
+            <section id="functionalities">
+                <h1>Functionalities</h1>
+                <p>Functionalities inventory:</p>
+                <ul>
+                    <li><span class="label">(PR0)</span> <span class="label">[16]</span> Authorized users and administrators can create a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[17]</span> Authorized users and administrators can delete a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[18]</span> Authorized users and administrators can update a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[19]</span> Authorized users and administrators can search a namespace within organization</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[26]</span> Authorized users and administrators can list linked groups to a namespace</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[20]</span> Authorized users and administrators can create a secret within a namespace</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[21]</span> Authorized users and administrators can delete a secret within a namespace</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[26]</span> Authorized users and administrators can block a secret within a namespace</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[22]</span> Authorized users and administrators can get a secret using valid temporal tokens</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[23]</span> Authorized users and administrators can update a secret</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[3]</span> Authorized users and administrators can create a group</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[4]</span> Authorized users and administrators can delete a group</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[5]</span> Authorized users and administrators can update a group</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[6]</span> Authorized users and administrators can add a user to a group</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[7]</span> Authorized users and administrators can remove a user from a group</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[8]</span> Authorized users and administrators can manage group permissions</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[9]</span> Authorized users and administrators can list group permissions and users</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[24]</span> Authorized users and administrators can link a group to a namespace</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[25]</span> Authorized users and administrators can unlink a group from a namespace</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[26]</span> Authorized users and administrators can create a user if it does not exist in OAuth</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[12]</span> Authorized users and administrators can create organizations</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[13]</span> Authorized users and administrators can delete organizations</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[14]</span> Authorized users and administrators can create namespaces within organizations</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[15]</span> Authorized users and administrators can delete namespaces within organizations</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[42]</span> Administrators can block a user</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[2]</span> Administrators can list users</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[10]</span> Administrators can check groups where users have been added</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[27]</span> Administrators can convert any user to an administrator</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[28]</span> Administrators can convert any administrator to a user</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[34]</span> Register administrator permission changes</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[35]</span> Register namespace access events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[36]</span> Register secrets access events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[37]</span> Register organization events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[11]</span> Register group events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[38]</span> Register users events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[39]</span> Register API Key events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[40]</span> Authorized users and administrators can list namespace access events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[41]</span> Authorized users and administrators can list secrets access events</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[29]</span> No OAuth users can create an API Key with an expiration date</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[30]</span> No OAuth users can block their own API Key</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[31]</span> Authorized users and administrators can delete an API Key</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[32]</span> Authorized users and administrators can list API Key usages</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[33]</span> Authorized users and administrators can invalidate an API Key</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[1]</span> Users can log in with or without OAuth</li>
+                    <li><span class="label">(PR0)</span> <span class="label">[43]</span> Users and administrators can update their own information</li>
+                    <li><span class="label">(PR1)</span> <span class="label">[?]</span> Authorized users and administrators can define cluster member authentication custom rules</li>
+                    <li><span class="label">(PR1)</span> <span class="label">[?]</span> Authorized users and administrators can define cluster authentication custom rules</li>
+                    <li><span class="label">(PR1)</span> <span class="label">[?]</span> Members can be added to cluster using temporal tokens</li>
+                    <li><span class="label">(PR1)</span> TODO</li>
+                    <li><span class="label">(PR2)</span> <span class="label">[?]</span> Authorized users and administrators can define organization replication criteria</li>
+                    <li><span class="label">(PR3)</span> TODO</li>
+                </ul>
+            </section><br>
+            <section id="roadmap">
+                <h1>Roadmap</h1>
+                <p>Features are linked with labels, as PR0, which means 'Principal Release 0'. It is used to create features list to divide the roadmap with the next development phases:</p>
+                <ul>
+                    <li><span class="label">PR0</span>: Single pod capable of interacting with the database. Includes 'basic' feature applications and manages basic secret orchestration.</li>
+                    <li><span class="label">PR1</span>: Supports the creation of clusters within Kubernetes clusters, enabling parallel processing of requests and managing database data without creating conflicts.</li>
+                    <li><span class="label">PR2</span>: Clusters can communicate with other clusters and create data replicas using custom rules.</li>
+                    <li><span class="label">PR3</span>: Sosia can connect to external systems and interact change expected behaviour dynamically based on events.</li>
+                </ul>
+                <table>
+                    <tr>
+                        <th>
+                            Principal release
+                        </th>
+                        <th>
+                            Tasks
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <span class="label">PR0</span>
+                        </th>
+                        <th>
+                            <span class="check-label">[1]</span> <span class="label">[2]</span> <span class="label">[3]</span> <span class="label">[4]</span> <span class="label">[5]</span> <span class="label">[6]</span> <span class="label">[6]</span> <span class="label">[7]</span>
+                            <span class="label">[8]</span> <span class="label">[9]</span> <span class="label">[10]</span> <span class="label">[11]</span> <span class="label">[12]</span> <span class="label">[13]</span> <span class="label">[14]</span> <span class="label">[15]</span>
+                            <span class="label">[16]</span> <span class="label">[17]</span> <span class="label">[18]</span> <span class="label">[19]</span> <span class="label">[20]</span> <span class="label">[21]</span> <span class="label">[22]</span> <span class="label">[23]</span>
+                            <span class="label">[24]</span> <span class="label">[25]</span> <span class="label">[26]</span> <span class="label">[27]</span> <span class="label">[28]</span> <span class="label">[29]</span> <span class="label">[30]</span> <span class="label">[31]</span>
+                            <span class="label">[32]</span> <span class="label">[33]</span> <span class="label">[34]</span> <span class="label">[35]</span> <span class="label">[36]</span> <span class="label">[37]</span> <span class="label">[38]</span> <span class="label">[39]</span>
+                            <span class="label">[40]</span> <span class="label">[41]</span> <span class="label">[42]</span> <span class="label">[43]</span>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <span class="label">PR1</span>
+                        </th>
+                        <th>
+                            TODO
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <span class="label">PR2</span>
+                        </th>
+                        <th>
+                            TODO
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <span class="label">PR3</span>
+                        </th>
+                        <th>
+                            TODO
+                        </th>
+                    </tr>
+                </table>
+            </section><br>
+
+            <section id="concepts">
+                <h1>Concepts</h1>
+
+                <section id="concepts-secret">
+                    <h2>Secret</h2>
+                    <p>
+                        Confidential content that will be orchestrated by Sosia. It includes a unique ID <i>(within namespace)</i>, a description, a list of labels, a reference to environment variables used to encrypt/decrypt and the name of the algorithm
+                        [AES256, AES-GCM, ChaCha20-Poly1305, RSA, Twofish].
+                    </p>
+<div class="code-container"><pre><code>{
+  "id": "mysecretid",
+  "content": "fakePassword1234",
+  "description": "A secret description",
+  "key": "MY_ENVIRONMENT_VARIABLE_POINTING_ENCRYPTION_KEY",
+  "labels": ["custom label 1", "custom label 2"],
+  "encrypt": "AES-256"
+}</code></pre></div><br>
+                    <p>
+                        To use a custom encrypt/decrypt algorithm, parameter <span class="subcode">encrypt</span> must be set to <span class="subcode">CUSTOM</span>. The referenced environment variable (<span class="subcode">key</span>) will then be used
+                        as the encryption key to process Kafka message. This means there could be a service monitoring the Sosia encryption topic.The secrets used during this process must be configured on both sides: Sosia and the external service. Additionally,
+                        topic configurations can be established. Please refer to the configuration section for more details.
+                    </p><br>
+<div class="code-container"><pre><code>{
+  "id": "mysecretid",
+  "content": "fakePassword1234",
+  "description": "A secret description",
+  "key": "MY_ENVIRONMENT_VARIABLE_POINTING_ENCRYPTION_TOPIC_KEY",
+  "labels": ["custom label 1", "custom label 2"],
+  "encrypt": "CUSTOM"
+}</code></pre></div><br>
+                    <div style="text-align: center;">
+                        <img src="htmldocs/images/concepts-secret.png">
+                    </div>
+                </section>
+                <section id="concepts-namespace">
+                    <h2>Namespace</h2>
+                    <p>
+                        A namespace is group of secrets. It also belongs to an organization. The relationships between namespace and secret, and namespace and organization, are <span class="subcode">1:N</span> and <span class="subcode">N:1</span> respectively.
+                    </p>
+<div class="code-container"><pre><code>{
+    "id": "mynamespace",
+    "description": "Namespace description",
+    "labels": ["custom label 1", "custom label 2"]
+}</code></pre></div><br>
+                </section>
+
+                <section id="concepts-organization">
+                    <h2>Organization</h2>
+                    <p>
+                        An organization is a group of namespaces.
+                    </p>
+<div class="code-container"><pre><code>{
+    "id": "myorganization",
+    "description": "Organization description",
+    "labels": ["custom label 1", "custom label 2"]
+}</code></pre></div><br><br>
+                    <div style="text-align: center;">
+                        <img src="htmldocs/images/concepts-organization.png">
+                    </div>
+                </section><br>
+
+                <section id="concepts-register">
+                    <h2>Register</h2>
+                    <p>
+                        Every "relevant" event are registered to audit Sosia events and published in Kafka. Tracked things:
+                    </p>
+                    <ul>
+                        <li>Administrator permissions changes such as revoke user administrator status</li>
+                        <li>Namespace creation, deletion, update, namespace addition, namespace deletion, group addition and group deletion</li>
+                        <li>Secret access, creation, deletion, block and update</li>
+                        <li>Organization creation, deletion, update, namespace addition, namespace deletion, group addition and group deletion</li>
+                        <li>Group creation, deletion, update, user addition and user deletion</li>
+                        <li>User block, administrator permissions changes and creation/deletion (only with no OAuth users)</li>
+                        <li>API Key creation, deletion, update and block</li>
+                    </ul><br>
+                    <p>
+                        Data published into kafka message:
+                    </p>
+                    <table>
+                        <tr>
+                            <th>source</th>
+                            <th>action</th>
+                            <th>trigger.type</th>
+                        </tr>
+                        <tr>
+                            <th>namespace, administrator, secret, organization, group, user or apikey</th>
+                            <th>creation, deletion, update, block, access or addition</th>
+                            <th>user, admin or system</th>
+                        </tr>
+                    </table><br>
+<div class="code-container"><pre><code>{
+    "source": "namespace",
+    "date": "2024-12-07T14:30:45+02:00",
+    "trigger": {
+        type: "user",
+        id: "fakeusername"
+    },
+    "action": "creation",
+    "description": "Namespace was created",
+    "data": {
+        "id": "mynamespace",
+        "description": "Namespace description",
+        "labels": ["custom label 1", "custom label 2"]
+    }
+}</code></pre></div><br>
+                </section><br>
+
+                <section id="concepts-group">
+                    <h2>Group</h2>
+                    <p>
+                        Used to manage users permissions, groups can be assigned to an organization or a namespace. Configuration follows an inheritance model: if a permission is granted at the organization level, the group will propagate those permissions
+                        to all namespaces. On the other hand, if group permissions are configured for a specific namespace, they will override organization-level configuration for that namespace.
+                    </p>
+<div class="code-container"><pre><code>{
+    "name": "groupname",
+    "users": [" esrname1", "username2"],
+    "labels": ["custom label 1", "custom label 2"]
+}</code></pre></div><br>
+                </section><br>
+
+                <section id="concepts-user">
+                    <h2>User</h2>
+                    <p>
+                        TODO(marti): define OAuth and no OAuth user flow
+                    </p>
+<div class="code-container"><pre><code>{
+}</code></pre></div><br>
+                </section><br>
+
+            </section><br>
+
+            <section id="documentation">
+                <h1>Documentation</h1>
+
+                <section id="documentation-configuration">
+                    <h2>Configuration</h2>
+                </section><br>
+            </section><br>
+
+            <section id="contributions">
+                <h1>Contributions</h1>
+
+                <p>TODO</p>
+            </section><br>
+        </main>
+
+        <footer>
+            <a href="https://github.com/MartiMarch/sosia" target="_blank"><img src="htmldocs/images/github-icon.png" width="25" height="23"></a> Created by Marti March
+        </footer>
+
+    </body>
+</html>
